@@ -1,0 +1,226 @@
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="shortcut icon" href="https://img.icons8.com/nolan/344/light.png" type="image/png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>LedLight</title>
+</head>
+<body class="bg-dark-all container">
+	<div class="container py-5">
+		<div class="row justify-content-center">
+			<div class="col-3 text-center">
+				<div class="rounded gradient-wrapper shadow">
+					<button class="btn btn-block bg-dark-custom" id="led-on">ON</button>
+				</div>
+			</div>
+			<div class="col-3 text-center">
+				<div class="rounded gradient-wrapper shadow">
+					<button class="btn btn-block bg-dark-custom" id="led-off">OFF</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="border-none shadow" id="accordion">
+  	<div class="card border-none">
+    	<div class="card-header dark-wrapper" id="headingOne">
+      	<button class="btn btn-block text-white text-left" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        	STATIC COLOR
+      	</button>
+    	</div>
+    	<div id="collapseOne" class="collapse show light-dark-wrapper" aria-labelledby="headingOne" data-parent="#accordion">
+      	<div class="card-body">
+      		<div class="row">
+      			<div class="col-12 text-white mb-3">
+      				BRIGHTNESS
+      			</div>
+      			<div class="col-12 form-element mb-3">
+      				<input class="range" type="range" id="brightness-range" min="0" max="100" value="%s">
+      			</div>	
+      		</div>
+      		<div class="row">
+      			<div class="col-6 text-white mb-3">
+      				RED
+      			</div>
+      			<div class="col-6 form-element text-right">
+      				<input class="number" type="number" id="red_color_number" min="0" max="255" value="%s">
+      			</div>
+      			<div class="col-12 form-element mb-3">
+      				<input type="range" id="red_color_range" min="0" max="255" value="%s">
+      			</div>	
+      		</div>
+      		<div class="row">
+      			<div class="col-6 text-white mb-3">
+      				BLUE
+      			</div>
+      			<div class="col-6 form-element text-right">
+      				<input class="number" type="number" id="blue_color_number" min="0" max="255" value="%s">
+      			</div>
+      			<div class="col-12 form-element mb-3">
+      				<input type="range" id="blue_color_range" min="0" max="255" value="%s">
+      			</div>	
+      		</div>
+      		<div class="row">
+      			<div class="col-6 text-white mb-3">
+      				GREEN
+      			</div>
+      			<div class="col-6 form-element text-right">
+      				<input class="number" type="number" id="green_color_number" min="0" max="255" value="%s">
+      			</div>
+      			<div class="col-12 form-element mb-3">
+      				<input type="range" id="green_color_range" min="0" max="255" value="%s">
+      			</div>	
+      		</div>
+      	</div>
+    	</div>
+  	</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<script>
+		$('#led-on').click(function() {
+			window.location.href = "/?led_status=1"
+		});
+
+		$('#led-off').click(function() {
+			window.location.href = "/?led_status=0"
+		});
+
+		$('#brightness-range').change(function() {
+			window.location.href = `/?led_brightness=${this.value}`
+		});
+
+		$('#red_color_range').change(function() {
+			window.location.href = `/?red_range=${this.value}`
+		});
+
+		$('#red_color_number').keyup(function() {
+			if (this.value >= 255) {
+				this.value = 255;
+			} else if (this.value <= 0) {
+				this.value = 0;
+			}
+		});
+
+		$('#red_color_number').change(function() {
+			window.location.href = `/?red_range=${this.value}`
+		});
+
+		$('#blue_color_range').change(function() {
+			window.location.href = `/?blue_range=${this.value}`
+		});
+
+		$('#blue_color_number').keyup(function() {
+			if (this.value >= 255) {
+				this.value = 255;
+			} else if (this.value <= 0) {
+				this.value = 0;
+			}
+		});
+
+		$('#blue_color_number').change(function() {
+			window.location.href = `/?blue_range=${this.value}`
+		});
+
+		$('#green_color_range').change(function() {
+			window.location.href = `/?green_range=${this.value}`
+		});
+
+		$('#green_color_number').keyup(function() {
+			if (this.value >= 255) {
+				this.value = 255;
+			} else if (this.value <= 0) {
+				this.value = 0;
+			}
+		});
+
+		$('#green_color_number').change(function() {
+			window.location.href = `/?green_range=${this.value}`
+		});
+	</script>
+	<style type="text/css">
+		.bg-dark-all {
+			background: #555555;
+		}
+
+		.gradient-wrapper {
+			background: linear-gradient(90deg, #00DBDE 0%%, #FC00FF 100%%);
+			padding: 2px;
+		}
+
+		.bg-dark-custom {
+			border: 0;
+			background: #555555;
+			color: white;
+		}
+
+		.bg-dark-custom:hover {
+			background: linear-gradient(90deg, #00DBDE 0%%, #FC00FF 100%%);
+			color: white;
+		}
+
+		.border-none {
+			border: 0;
+		}
+
+		.dark-wrapper {
+			background: #444444;
+			padding: 2px;
+			transition: background-color .3s linear;
+		}
+
+		.dark-wrapper:hover {
+			background: linear-gradient(90deg, #00DBDE 0%%, #FC00FF 100%%);
+		}
+
+		.light-dark-wrapper {
+			background: #555555;
+		}
+
+		.show {
+			border-top: 2px solid #00DBDE;
+		}
+
+		.form-element input[type="range"] {
+		  -webkit-appearance:none;
+		  width: 100%%;
+		  height: 30px;
+		  border-radius: 15px;
+		  background: linear-gradient(90deg, #00DBDE 0%%, #FC00FF 100%%);
+		  outline: none;
+		  overflow: hidden;
+		}
+
+		.form-element input[type="range"]::-webkit-slider-thumb {
+		  -webkit-appearance:none;
+		  width: 30px;
+		  height: 30px;
+		  background: #f5f5f5;
+		  border-radius: 15px;
+		  box-shadow: -550px 0px 0px 535px rgba(255, 255, 255, .6);
+		  cursor: pointer;
+		}
+
+		.form-element input[type="number"] {
+			color: white;
+			padding: 0 0 0 15px;
+		  width: 70px;
+		  height: 30px;
+		  background: #444444;
+		  border: 1px solid #444444;
+		  border-radius: 15px;
+		  cursor: pointer;
+		  outline: none;
+		  line-height: 30px;
+		}
+
+		.form-element input[type="number"]::-webkit-inner-spin-button,
+		.form-element input[type="number"]::-webkit-outer-spin-button {
+  		opacity: .3 !important;
+  		background: #444444 !important;
+  		height: 30px;
+  		cursor: pointer;
+		}
+ </style>
+</body>
+</html>
