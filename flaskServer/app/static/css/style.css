@@ -1,0 +1,9 @@
+input[type=range]::-webkit-slider-thumb {
+	width: 35px;
+  background-color: #7873f5;
+}
+
+.palette {
+  min-height: 50px;
+  background-color: black;
+}

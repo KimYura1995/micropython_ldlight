@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="card mt-5">
+  <div class="card-header purple-gradient text-white">
+    Static mode
+  </div>
+  <div class="card-body elegant-color text-white">
+    <div class="palette w-50 rounded-pill mx-auto mt-4" id="paletteStatic">
+    </div>
+    <label class="mt-4" for="static-red-range">Red</label>
+    <div class="d-flex">
+      <input type="range" class="custom-range" id="static-red-range" min="0" max="255" value="{{ red_color }}">
+      <span class="font-weight-bold ml-2" id="static-red-span"></span>
+    </div>
+    <label class="mt-4" for="static-green-range">Green</label>
+    <div class="d-flex">
+      <input type="range" class="custom-range" id="static-green-range" min="0" max="255" value="{{ green_color }}">
+      <span class="font-weight-bold ml-2" id="static-green-span"></span>
+    </div>
+    <label class="mt-4" for="static-blue-range">Blue</label>
+    <div class="d-flex">
+      <input type="range" class="custom-range" id="static-blue-range" min="0" max="255" value="{{ blue_color }}">
+      <span class="font-weight-bold ml-2" id="static-blue-span"></span>
+    </div>
+  </div>
+</div>
+{% endblock %}

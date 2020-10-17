@@ -1,0 +1,43 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="card mt-5">
+  <div class="card-header purple-gradient text-white">
+    Breath mode
+  </div>
+  <div class="card-body elegant-color text-white">
+    <div class="palette w-50 rounded-pill mx-auto mt-4" id="paletteBreath">
+    </div>
+    <label class="mt-4" for="breath-min-brightness-range">Minimum brightness</label>
+    <div class="d-flex">
+      <input type="range" class="custom-range" id="breath-min-brightness-range" min="0" max="100" value="{{ min_brightness }}">
+      <span class="font-weight-bold ml-2" id="breath-min-brightness-span"></span>
+    </div>
+    <label class="mt-4" for="breath-max-brightness-range">Maximum brightness</label>
+    <div class="d-flex">
+      <input type="range" class="custom-range" id="breath-max-brightness-range" min="0" max="100" value="{{ max_brightness }}">
+      <span class="font-weight-bold ml-2" id="breath-max-brightness-span"></span>
+    </div>
+    <label class="mt-4" for="breath-step-range">Breath step</label>
+    <div class="d-flex">
+      <input type="range" class="custom-range" id="breath-step-range" min="1" max="5" value="{{ breath_step }}">
+      <span class="font-weight-bold ml-2" id="breath-step-span"></span>
+    </div>
+    <label class="mt-4" for="breath-red-range">Red</label>
+    <div class="d-flex">
+      <input type="range" class="custom-range" id="breath-red-range" min="0" max="255" value="{{ red_color }}">
+      <span class="font-weight-bold ml-2" id="breath-red-span"></span>
+    </div>
+    <label class="mt-4" for="breath-green-range">Green</label>
+    <div class="d-flex">
+      <input type="range" class="custom-range" id="breath-green-range" min="0" max="255" value="{{ green_color }}">
+      <span class="font-weight-bold ml-2" id="breath-green-span"></span>
+    </div>
+    <label class="mt-4" for="breath-blue-range">Blue</label>
+    <div class="d-flex">
+      <input type="range" class="custom-range" id="breath-blue-range" min="0" max="255" value="{{ blue_color }}">
+      <span class="font-weight-bold ml-2" id="breath-blue-span"></span>
+    </div>
+  </div>
+</div>
+{% endblock %}
