@@ -4,14 +4,10 @@ import neopixel
 import settings
 
 
-neo_pixel = neopixel.NeoPixel(machine.Pin(4), 30)
+neo_pixel = neopixel.NeoPixel(machine.Pin(4), settings.SETTINGS['num_leds'])
 
 
 class RainbowMode:
-    rainbow_step = 1
-    led_brightness = 0
-    num_leds = 1
-    led_status = 0
 
     def __init__(self):
         self.set_settings()
@@ -56,7 +52,7 @@ class RainbowMode:
         self.led_status = settings.SETTINGS['led_status']
 
     def calc_color(self, color):
-        return int(color * self.led_brightness / 100 * self.led_status)
+        return int(color * self.led_brightness * self.led_status / 100)
 
 
 

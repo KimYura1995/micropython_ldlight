@@ -5,6 +5,7 @@ import ujson
 from static_mode import StaticMode
 from rainbow_mode import RainbowMode
 from breath_mode import BreathMode
+from color_loop_mode import ColorLoopMode
 import settings
 
 
@@ -12,6 +13,7 @@ MODS = {
     'rainbow_mode': RainbowMode(),
     'breath_mode': BreathMode(),
     'static_mode': StaticMode(),
+    'color_loop_mode': ColorLoopMode(),
 }
 
 
@@ -51,6 +53,14 @@ async def handle_request(request):
             'rainbow_step': settings.SETTINGS['mode']['rainbow_mode']['rainbow_step'],
         })
         settings.SETTINGS['current_mode'] = 'rainbow_mode'
+
+    if "GET /?color_loop_mode=get" in request:
+        response = ujson.dumps({
+            'led_status': settings.SETTINGS['led_status'],
+            'led_brightness': settings.SETTINGS['led_brightness'],
+            'loop_step': settings.SETTINGS['mode']['color_loop_mode']['loop_step'],
+        })
+        settings.SETTINGS['current_mode'] = 'color_loop_mode'
 
     if "GET /?breath_mode=get" in request:
         response = ujson.dumps({
@@ -93,6 +103,11 @@ async def handle_request(request):
     if "GET /?rainbow_step=" in request:
         match_rainbow_step = ure.search(r'rainbow_step=(\d+)', request)
         settings.SETTINGS['mode']['rainbow_mode']['rainbow_step'] = int(match_rainbow_step.group(1))
+
+    # loop mode
+    if "GET /?loop_step=" in request:
+        match_loop_step = ure.search(r'loop_step=(\d+)', request)
+        settings.SETTINGS['mode']['color_loop_mode']['loop_step'] = int(match_loop_step.group(1))
 
     # breath mode
     if "GET /?min_brightness_range=" in request:

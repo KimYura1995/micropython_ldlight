@@ -4,18 +4,10 @@ import neopixel
 import settings
 
 
-neo_pixel = neopixel.NeoPixel(machine.Pin(4), 30)
+neo_pixel = neopixel.NeoPixel(machine.Pin(4), settings.SETTINGS['num_leds'])
 
 
 class BreathMode:
-    num_leds = 1
-    led_status = 0
-    min_brightness = 0
-    max_brightness = 1
-    breath_step = 1
-    red_color = 0
-    green_color = 0
-    blue_color = 0
 
     def __init__(self):
         self.set_settings()

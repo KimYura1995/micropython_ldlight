@@ -20,7 +20,7 @@ STATIC_MODE_SETTINGS.update(MAIN_INITIAL_SETTINGS)
 RAINBOW_MODE_SETTINGS = {
     'rainbow_step': 0,
 }
-STATIC_MODE_SETTINGS.update(MAIN_INITIAL_SETTINGS)
+RAINBOW_MODE_SETTINGS.update(MAIN_INITIAL_SETTINGS)
 
 BREATH_MODE_SETTINGS = {
     'min_brightness': 0,
@@ -31,6 +31,11 @@ BREATH_MODE_SETTINGS = {
     'blue_color': 0,
 }
 BREATH_MODE_SETTINGS.update(MAIN_INITIAL_SETTINGS)
+
+COLOR_LOOP_MODE_SETTINGS = {
+    'loop_step': 0,
+}
+COLOR_LOOP_MODE_SETTINGS.update(MAIN_INITIAL_SETTINGS)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -99,7 +104,7 @@ def static_mode():
             params = {'blue_range': static_blue}
 
         # GET request to NodeMCU
-        requests.get('http://192.168.0.146/', params=params)
+        requests.get('http://192.168.0.100/', params=params)
 
         return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
@@ -206,3 +211,34 @@ def breath_mode():
             pass
 
         return render_template('breath_mode.html', **BREATH_MODE_SETTINGS)
+
+
+@app.route('/color-loop-mode/', methods=['GET', 'POST'])
+def color_loop_mode():
+    global COLOR_LOOP_MODE_SETTINGS
+
+    if request.method == 'POST':
+        params = {}
+        loop_step = request.form.get('loop_step')
+
+        # loop step
+        if loop_step:
+            params = {'loop_step': loop_step}
+
+        # GET request to NodeMCU
+        requests.get('http://192.168.0.146/', params=params)
+
+        return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
+
+    if request.method == 'GET':
+        try:
+            response = requests.get('http://192.168.0.146/', params={'color_loop_mode': 'get'}, timeout=10)
+            if response:
+                try:
+                    COLOR_LOOP_MODE_SETTINGS = response.json()
+                except json.decoder.JSONDecodeError:
+                    pass
+        except requests.exceptions.ReadTimeout:
+            pass
+
+        return render_template('color_loop_mode.html', **COLOR_LOOP_MODE_SETTINGS)

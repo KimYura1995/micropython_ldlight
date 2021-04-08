@@ -20,5 +20,8 @@ SETTINGS = {
             'green_color': 0,
             'blue_color': 0,
         },
+        'color_loop_mode': {
+            'loop_step': 1,
+        },
     },
 }

@@ -220,4 +220,20 @@ $(document).ready(function() {
     $paletteBreath.css('background-color',
                      `rgb(${$breathRedRange.val()}, ${$breathGreenRange.val()}, ${$breathBlueRange.val()})`)
   });
+
+  // color-loop-mode
+  // loop-step
+  let $loopStepRange = $('#loop-step-range');
+  let $loopStepSpan = $('#loop-step-span');
+
+  $loopStepSpan.html($loopStepRange.val());
+
+  $loopStepRange.on('input change', () => {
+    $loopStepSpan.html($loopStepRange.val());
+  });
+
+  $loopStepRange.on('change', function() {
+    let data = {'loop_step': $loopStepRange.val()};
+    ajaxRequest('/color-loop-mode/', data);
+  });
 });

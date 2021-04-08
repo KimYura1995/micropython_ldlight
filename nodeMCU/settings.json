@@ -10,7 +10,7 @@
 			"blue_color": 0
 		},
 		"rainbow_mode": {
-            "rainbow_step": 1
+			"rainbow_step": 1
 		},
 		"breath_mode": {
 			"min_brightness": 0,
@@ -19,6 +19,9 @@
 			"red_color": 0,
 			"green_color": 0,
 			"blue_color": 0
+		},
+		"color_loop_mode": {
+			"loop_step": 1
 		}
 	}
 }
