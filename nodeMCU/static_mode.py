@@ -23,8 +23,8 @@ class StaticMode:
                 neo_pixel[led] = (red, green, blue)
 
             neo_pixel.write()
-            await asyncio.sleep_ms(20)
             self.change_settings()
+            await asyncio.sleep_ms(10)
         except Exception:
             return
 

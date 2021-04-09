@@ -104,7 +104,7 @@ def static_mode():
             params = {'blue_range': static_blue}
 
         # GET request to NodeMCU
-        requests.get('http://192.168.0.100/', params=params)
+        requests.get('http://192.168.0.146/', params=params)
 
         return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
@@ -181,17 +181,14 @@ def breath_mode():
         # breath red
         if breath_red:
             params = {'breath_red_range': breath_red}
-            print(breath_red)
 
         # breath green
         if breath_green:
             params = {'breath_green_range': breath_green}
-            print(breath_green)
 
         # breath blue
         if breath_blue:
             params = {'breath_blue_range': breath_blue}
-            print(breath_blue)
 
         # GET request to NodeMCU
         requests.get('http://192.168.0.146/', params=params)
@@ -204,7 +201,6 @@ def breath_mode():
             if response:
                 try:
                     BREATH_MODE_SETTINGS = response.json()
-                    print(BREATH_MODE_SETTINGS)
                 except json.decoder.JSONDecodeError:
                     pass
         except requests.exceptions.ReadTimeout:

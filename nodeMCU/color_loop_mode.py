@@ -2,6 +2,7 @@ import uasyncio as asyncio
 import machine
 import neopixel
 import settings
+import time
 
 
 neo_pixel = neopixel.NeoPixel(machine.Pin(4), settings.SETTINGS['num_leds'])
@@ -18,9 +19,9 @@ class ColorLoopMode:
             rgb = [255, 0, 0]
             for dC in range(0, 3, 1):
                 iC = 0 if dC == 2 else dC + 1
-                for i in range(0, 255, self.loop_step):
-                    rgb[dC] -= self.loop_step
-                    rgb[iC] += self.loop_step
+                for i in range(0, 255, 1):
+                    rgb[dC] -= 1
+                    rgb[iC] += 1
                     for a in range(0, self.num_leds, 1):
                         neo_pixel[a] = (
                             self.calc_color(rgb[0]),
@@ -29,7 +30,8 @@ class ColorLoopMode:
                         )
                     neo_pixel.write()
                     self.change_settings()
-                    await asyncio.sleep_ms(30)
+                    await asyncio.sleep_ms(5)
+                    time.sleep_ms(self.loop_step * 2)
         except Exception:
             return
 

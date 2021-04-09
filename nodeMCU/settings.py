@@ -1,5 +1,5 @@
 SETTINGS = {
-    'num_leds': 30,
+    'num_leds': 60,
     'led_status': 0,
     'led_brightness': 0,
     'current_mode': 'static_mode',

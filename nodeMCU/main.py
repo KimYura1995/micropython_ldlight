@@ -139,7 +139,7 @@ async def handle_request(request):
 
 async def web_handler(reader, writer):
     try:
-        request = str(await reader.read(1024))
+        request = str(await reader.read(2048))
         response = await handle_request(request)
         header = """HTTP/1.1 200 OK\nConnection: close\n\n"""
         await writer.awrite(header)
