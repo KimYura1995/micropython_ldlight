@@ -141,7 +141,8 @@ async def web_handler(reader, writer):
     try:
         request = str(await reader.read(2048))
         response = await handle_request(request)
-        header = """HTTP/1.1 200 OK\nConnection: close\n\n"""
+        header = """HTTP/1.1 200 OK\nConnection: close\nAccess-Control-Allow-Origin: *\n
+        """
         await writer.awrite(header)
         await writer.awrite(response)
         await writer.aclose()
