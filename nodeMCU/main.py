@@ -69,9 +69,9 @@ async def handle_request(request):
             'min_brightness': settings.SETTINGS['mode']['breath_mode']['min_brightness'],
             'max_brightness': settings.SETTINGS['mode']['breath_mode']['max_brightness'],
             'breath_step': settings.SETTINGS['mode']['breath_mode']['breath_step'],
-            'red_color': settings.SETTINGS['mode']['breath_mode']['red_color'],
-            'green_color': settings.SETTINGS['mode']['breath_mode']['green_color'],
-            'blue_color': settings.SETTINGS['mode']['breath_mode']['blue_color'],
+            'red_color_breath': settings.SETTINGS['mode']['breath_mode']['red_color'],
+            'green_color_breath': settings.SETTINGS['mode']['breath_mode']['green_color'],
+            'blue_color_breath': settings.SETTINGS['mode']['breath_mode']['blue_color'],
             })
         settings.SETTINGS['current_mode'] = 'breath_mode'
 
