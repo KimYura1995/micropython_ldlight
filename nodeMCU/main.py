@@ -30,13 +30,13 @@ def save_initial_settings():
 async def handle_request(request):
     response = ''
 
-    if "GET /?main_settings=get" in request:
+    if "main_settings=get" in request:
         response = ujson.dumps({
             'led_status': settings.SETTINGS['led_status'],
             'led_brightness': settings.SETTINGS['led_brightness'],
             })
 
-    if "GET /?static_mode=get" in request:
+    if "static_mode=get" in request:
         response = ujson.dumps({
             'led_status': settings.SETTINGS['led_status'],
             'led_brightness': settings.SETTINGS['led_brightness'],
@@ -46,7 +46,7 @@ async def handle_request(request):
             })
         settings.SETTINGS['current_mode'] = 'static_mode'
 
-    if "GET /?rainbow_mode=get" in request:
+    if "rainbow_mode=get" in request:
         response = ujson.dumps({
             'led_status': settings.SETTINGS['led_status'],
             'led_brightness': settings.SETTINGS['led_brightness'],
@@ -54,7 +54,7 @@ async def handle_request(request):
         })
         settings.SETTINGS['current_mode'] = 'rainbow_mode'
 
-    if "GET /?color_loop_mode=get" in request:
+    if "color_loop_mode=get" in request:
         response = ujson.dumps({
             'led_status': settings.SETTINGS['led_status'],
             'led_brightness': settings.SETTINGS['led_brightness'],
@@ -62,7 +62,7 @@ async def handle_request(request):
         })
         settings.SETTINGS['current_mode'] = 'color_loop_mode'
 
-    if "GET /?breath_mode=get" in request:
+    if "breath_mode=get" in request:
         response = ujson.dumps({
             'led_status': settings.SETTINGS['led_status'],
             'led_brightness': settings.SETTINGS['led_brightness'],
@@ -75,62 +75,62 @@ async def handle_request(request):
             })
         settings.SETTINGS['current_mode'] = 'breath_mode'
 
-    if "GET /?save=save" in request:
+    if "save=save" in request:
         save_initial_settings()
 
-    if "GET /?led_status=" in request:
+    if "led_status=" in request:
         match_led_status = ure.search(r'led_status=(\d)', request)
         settings.SETTINGS['led_status'] = int(match_led_status.group(1))
 
-    if "GET /?led_brightness=" in request:
+    if "led_brightness=" in request:
         match_led_brightness = ure.search(r'led_brightness=(\d+)', request)
         settings.SETTINGS['led_brightness'] = int(match_led_brightness.group(1))
 
     # static mode
-    if "GET /?red_range=" in request:
+    if "?red_range=" in request:
         match_red_color = ure.search(r'red_range=(\d+)', request)
         settings.SETTINGS['mode']['static_mode']['red_color'] = int(match_red_color.group(1))
 
-    if "GET /?blue_range=" in request:
+    if "blue_range=" in request:
         match_blue_color = ure.search(r'blue_range=(\d+)', request)
         settings.SETTINGS['mode']['static_mode']['blue_color'] = int(match_blue_color.group(1))
 
-    if "GET /?green_range=" in request:
+    if "green_range=" in request:
         match_green_color = ure.search(r'green_range=(\d+)', request)
         settings.SETTINGS['mode']['static_mode']['green_color'] = int(match_green_color.group(1))
 
     # rainbow mode
-    if "GET /?rainbow_step=" in request:
+    if "rainbow_step=" in request:
         match_rainbow_step = ure.search(r'rainbow_step=(\d+)', request)
         settings.SETTINGS['mode']['rainbow_mode']['rainbow_step'] = int(match_rainbow_step.group(1))
 
     # loop mode
-    if "GET /?loop_step=" in request:
+    if "loop_step=" in request:
         match_loop_step = ure.search(r'loop_step=(\d+)', request)
         settings.SETTINGS['mode']['color_loop_mode']['loop_step'] = int(match_loop_step.group(1))
 
     # breath mode
-    if "GET /?min_brightness_range=" in request:
+    if "min_brightness_range=" in request:
         match_min_brightness = ure.search(r'min_brightness_range=(\d+)', request)
         settings.SETTINGS['mode']['breath_mode']['min_brightness'] = int(match_min_brightness.group(1))
 
-    if "GET /?max_brightness_range=" in request:
+    if "max_brightness_range=" in request:
         match_max_brightness = ure.search(r'max_brightness_range=(\d+)', request)
         settings.SETTINGS['mode']['breath_mode']['max_brightness'] = int(match_max_brightness.group(1))
 
-    if "GET /?breath_step=" in request:
+    if "breath_step=" in request:
         match_breath_step = ure.search(r'breath_step=(\d+)', request)
         settings.SETTINGS['mode']['breath_mode']['breath_step'] = int(match_breath_step.group(1))
 
-    if "GET /?breath_red_range=" in request:
+    if "breath_red_range=" in request:
         match_breath_red_color = ure.search(r'breath_red_range=(\d+)', request)
         settings.SETTINGS['mode']['breath_mode']['red_color'] = int(match_breath_red_color.group(1))
 
-    if "GET /?breath_green_range=" in request:
+    if "breath_green_range=" in request:
         match_green_color = ure.search(r'breath_green_range=(\d+)', request)
         settings.SETTINGS['mode']['breath_mode']['green_color'] = int(match_green_color.group(1))
 
-    if "GET /?breath_blue_range=" in request:
+    if "breath_blue_range=" in request:
         match_blue_color = ure.search(r'breath_blue_range=(\d+)', request)
         settings.SETTINGS['mode']['breath_mode']['blue_color'] = int(match_blue_color.group(1))
 
